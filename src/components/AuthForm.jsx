@@ -20,9 +20,9 @@ const AuthForm = () => {
   let { slug } = useParams();
 
   let condition = slug === "signup";
-  let baseurl = process.env.REACT_APP_BASE_URI + "auth";
+  let baseurl = process.env.REACT_APP_BASE_URI + "/auth";
   console.log(baseurl);
-  let url = condition ? baseurl + "signup" : baseurl + "signin";
+  let url = condition ? baseurl + "/signup" : baseurl + "/signin";
   const formik = useFormik({
     initialValues: {
       firstName: condition ? "" : undefined,

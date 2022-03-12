@@ -10,6 +10,16 @@ const Submission = () => {
   const [auth, setAuth] = useContext(AppContext);
 
   const [formdata, setFormdata] = useState(auth.formValues);
+
+  const calculatePaybackdetails = (loandata) => {
+    let tenur
+
+    
+  }
+
+  useEffect(() => {
+    
+  }, [formdata])
   return (
     <div className="xl:w-1/2 lg:w-2/5 md:w-4/5 w-full p-6 self-center justify-self-center rounded-md border border-kwabapurplelight">
       <div className=" text-gray-700 -ml-2 mb-8 text-lg font-medium ">
