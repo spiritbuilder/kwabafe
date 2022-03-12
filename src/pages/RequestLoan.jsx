@@ -12,9 +12,9 @@ import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { AppContext } from "../context/AppProvider";
 
 const RequestLoan = () => {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   let [auth, setAuth] = useContext(AppContext);
-  if(!auth.authentication) navigate("/auth/signin")
+  if (!auth.authentication) navigate("/auth/signin");
   const [picked, setPicked] = useState("");
   const formik = useFormik({
     initialValues: {
@@ -32,8 +32,8 @@ const RequestLoan = () => {
     }),
     onSubmit: (values) => {
       let finalval = { ...values, accomodation_status: picked };
-      setAuth({ ...auth, formvalues: finalval })
-      navigate("/submission")
+      setAuth({ ...auth, formvalues: finalval });
+      navigate("/submission");
       alert(finalval.accomodation_status);
       //do something
     },
@@ -50,7 +50,7 @@ const RequestLoan = () => {
           onClick={() => {
             localStorage.clear();
             setAuth({ ...auth, authentication: undefined });
-            navigate("/")
+            navigate("/");
           }}
         >
           Logout
@@ -164,10 +164,17 @@ const RequestLoan = () => {
             value={formik.values.payment_plan}
           >
             <option value="1 Month">1 Month</option>
-            <option value="1 Month">2 Month</option>
-            <option value="1 Month">3 Month</option>
-            <option value="1 Month">4 Month</option>
-            <option value="1 Month">6 Month</option>
+            <option value="2 Month">2 Months</option>
+            <option value="3 Month">3 Months</option>
+            <option value="4 Month">4 Months</option>
+            <option value="5 Month">5 Months</option>
+            <option value="6 Month">6 Months</option>
+            <option value="7 Month">7 Months</option>
+            <option value="8 Month">8 Months</option>
+            <option value="9 Month">9 Months</option>
+            <option value="10 Month">10 Months</option>
+            <option value="11 Month">11 Months</option>
+            <option value="12 Month">12 Months</option>
           </select>
           {formik.errors.accomodation_status ? (
             <div className=" text-red-500 text-xs mt-1">

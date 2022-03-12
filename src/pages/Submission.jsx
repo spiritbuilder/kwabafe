@@ -7,11 +7,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppProvider";
 
 const Submission = () => {
+  const [auth, setAuth] = useContext(AppContext);
 
-
-
+  const [formdata, setFormdata] = useState(auth.formValues);
   return (
-
     <div className="xl:w-1/2 lg:w-2/5 md:w-4/5 w-full p-6 self-center justify-self-center rounded-md border border-kwabapurplelight">
       <div className=" text-gray-700 -ml-2 mb-8 text-lg font-medium ">
         My Rent
@@ -39,10 +38,17 @@ const Submission = () => {
         // value={formik.values.payment_plan}
       >
         <option value="1 Month">1 Month</option>
-        <option value="1 Month">2 Month</option>
-        <option value="1 Month">3 Month</option>
-        <option value="1 Month">4 Month</option>
-        <option value="1 Month">6 Month</option>
+        <option value="2 Month">2 Months</option>
+        <option value="3 Month">3 Months</option>
+        <option value="4 Month">4 Months</option>
+        <option value="5 Month">5 Months</option>
+        <option value="6 Month">6 Months</option>
+        <option value="7 Month">7 Months</option>
+        <option value="8 Month">8 Months</option>
+        <option value="9 Month">9 Months</option>
+        <option value="10 Month">10 Months</option>
+        <option value="11 Month">11 Months</option>
+        <option value="12 Month">12 Months</option>
       </select>
 
       <label className="text-sm mt-10 mb-1 block" htmlFor="lastName">
@@ -63,10 +69,10 @@ const Submission = () => {
         </div>
       </div>
 
-      <button type="submit" className=" bg-kwabapurple text-sm mt-4 w-full self-center text-white p-4  rounded-md "
-        onClick={() => {
-        
-      }}
+      <button
+        type="submit"
+        className=" bg-kwabapurple text-sm mt-4 w-full self-center text-white p-4  rounded-md "
+        onClick={() => {}}
       >
         ACCEPT
       </button>
