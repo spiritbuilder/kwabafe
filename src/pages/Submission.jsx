@@ -8,13 +8,12 @@ import { AppContext } from "../context/AppProvider";
 
 const Submission = () => {
   const [auth, setAuth] = useContext(AppContext);
-
+console.log(auth)
   const [formdata, setFormdata] = useState(auth.formValues);
 
   const calculatePaybackdetails = (loandata) => {
-    let tenur
+    let tenure = 1
 
-    
   }
 
   useEffect(() => {

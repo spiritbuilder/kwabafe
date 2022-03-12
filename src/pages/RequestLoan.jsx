@@ -32,7 +32,7 @@ const RequestLoan = () => {
     }),
     onSubmit: (values) => {
       let finalval = { ...values, accomodation_status: picked };
-      setAuth({ ...auth, formvalues: finalval });
+      setAuth({ ...auth, formValues: finalval });
       navigate("/submission");
       alert(finalval.accomodation_status);
       //do something
