@@ -55,7 +55,7 @@ const AuthForm = () => {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userfullname", response.data.fullname);
         navigate("/apply");
-        console.log(auth, "changed");
+       
         setDisabled(false);
       } catch (error) {
         console.log(error.response);

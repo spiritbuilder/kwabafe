@@ -14,36 +14,49 @@ import { AppContext } from "../context/AppProvider";
 const RequestLoan = () => {
   let navigate = useNavigate();
   let [auth, setAuth] = useContext(AppContext);
-  if (!auth.authentication) navigate("/auth/signin");
+
   const [picked, setPicked] = useState("");
   const formik = useFormik({
     initialValues: {
-      // accomodation_status: "",
+      payment_plan: "",
       monthly_income: 0,
       rent_amount: 0,
-      payment_plan: "",
     },
     validationSchema: Yup.object({
       payment_plan: Yup.string()
-        .max(15, "Must be 15 characters or less")
+        .min(2, "Must be 2 characters or more")
         .required("Required"),
-      monthly_income: Yup.number().min(10000).required("Required"),
-      rent_amount: Yup.number().min(10000).required("Required"),
+      monthly_income: Yup.number().min(1000).required("Required"),
+      rent_amount: Yup.number().min(1000).required("Required"),
     }),
     onSubmit: (values) => {
       let finalval = { ...values, accomodation_status: picked };
+      console.log(finalval);
       setAuth({ ...auth, formValues: finalval });
       navigate("/submission");
-      alert(finalval.accomodation_status);
-      //do something
     },
   });
+
+  useEffect(() => {
+    if (auth.formValues) {
+      for (let i in auth.formValues) {
+        if (i !== "accommodation_status") {
+          formik.setFieldValue(i, auth.formValues[i]);
+        } else {
+          setPicked(auth.formValues[i]);
+        }
+      }
+    } else if (!auth.authentication) {
+      navigate("/");
+    }
+    return;
+  }, []);
 
   return (
     <div className="  xl:w-1/3 lg:w-2/5 md:w-2/5 w-2/3 sm:w-2/3  p-6 self-center justify-self-center rounded-md border border-kwabapurplelight">
       <div className="flex justify-between center">
         <div className=" text-kwabapurplelight font-bold">
-          Hi {auth.authentication.fullname}
+          Hi {auth?.authentication?.fullname}
         </div>
         <div
           className="inline cursor-pointer hover:scale-105 underline text-red-500"
@@ -105,9 +118,9 @@ const RequestLoan = () => {
         >
           I'm still searching
         </div>
-        {formik.errors.accomodation_status ? (
+        {!picked ? (
           <div className=" text-red-500 text-xs mt-1">
-            {formik.errors.accomodation_status}
+            Please select your accomodation status
           </div>
         ) : undefined}
 
@@ -176,16 +189,18 @@ const RequestLoan = () => {
             <option value="11 Month">11 Months</option>
             <option value="12 Month">12 Months</option>
           </select>
-          {formik.errors.accomodation_status ? (
+          {formik.errors.payment_plan ? (
             <div className=" text-red-500 text-xs mt-1">
-              {formik.errors.accomodation_status}
+              {formik.errors.payment_plan}
             </div>
           ) : undefined}
         </div>
         <button
           type="button"
           className=" bg-kwabagreen text-sm mt-2 w-full self-center text-white p-2  rounded-md "
-          onClick={formik.handleSubmit}
+          onClick={(e) => {
+            formik.handleSubmit();
+          }}
         >
           NEXT
         </button>
