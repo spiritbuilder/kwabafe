@@ -11,23 +11,19 @@ import Submission from "./pages/Submission";
 
 function App() {
   return (
-    // // <AppProvider>
-    //   {/* <BrowserRouter>
-    //     <div className=" w-screen h-screen bg-white">
-    //       <Routes>
-    //         <Route path="/" element={<Landing />} />
-    //         <Route path="auth/:slug" element={<Auth />} />
-    //         <Route path="apply" element={<RequestLoan />} />
-    //         <Route path="submission" element={<Submission />} />
-    //       </Routes>
-    //       <ToastContainer />
-    //     </div>
-    //   </BrowserRouter> */}
-    
-    // {/* </AppProvider> */}
-    <>
-    <Submission />
-    </>
+    <AppProvider>
+      <BrowserRouter>
+        <div className=" w-screen h-screen flex justify-center items-center bg-white">
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="auth/:slug" element={<Auth />} />
+            <Route path="apply" element={<RequestLoan />} />
+            <Route path="submission" element={<Submission />} />
+          </Routes>
+          <ToastContainer />
+        </div>
+      </BrowserRouter>
+    </AppProvider>
   );
 }
 

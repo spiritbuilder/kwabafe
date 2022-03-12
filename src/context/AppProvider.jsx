@@ -10,9 +10,11 @@ let AppContext = createContext();
 
 
 function AppProvider({ children }) {
+  let token = localStorage.getItem("token")
+  let fullname = localStorage.getItem("fullname")
 
   const [auth, setAuth] = useState({
-    authentication : undefined,
+    authentication :token?{token,fullname}: undefined,
     formValues: {},
   });
 

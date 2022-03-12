@@ -7,8 +7,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppProvider";
 
 const Submission = () => {
+
+
+  
   return (
-    
+
     <div className="xl:w-1/2 lg:w-2/5 md:w-4/5 w-full p-6 self-center justify-self-center rounded-md border border-kwabapurplelight">
       <div className=" text-gray-700 -ml-2 mb-8 text-lg font-medium ">
         My Rent

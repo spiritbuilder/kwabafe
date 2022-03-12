@@ -8,10 +8,13 @@ import React, {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { AppContext } from "../context/AppProvider";
 
 const RequestLoan = () => {
+  let navigate = useNavigate()
+  let [auth, setAuth] = useContext(AppContext);
+  if(!auth.authentication) navigate("/auth/signin")
   const [picked, setPicked] = useState("");
   const formik = useFormik({
     initialValues: {
@@ -21,10 +24,6 @@ const RequestLoan = () => {
       payment_plan: "",
     },
     validationSchema: Yup.object({
-      // accomodation_status: Yup.string()
-      // .max(15, "Must be 15 characters or less")
-      // .required("Required"),
-
       payment_plan: Yup.string()
         .max(15, "Must be 15 characters or less")
         .required("Required"),
@@ -40,7 +39,22 @@ const RequestLoan = () => {
   });
 
   return (
-    <div className=" w-1/2 p-6 self-center justify-self-center rounded-md border border-kwabapurplelight">
+    <div className="  xl:w-1/3 lg:w-2/5 md:w-2/5 w-2/3 sm:w-2/3  p-6 self-center justify-self-center rounded-md border border-kwabapurplelight">
+      <div className="flex justify-between center">
+        <div className=" text-kwabapurplelight font-bold">
+          Hi {auth.authentication.fullname}
+        </div>
+        <div
+          className="inline cursor-pointer hover:scale-105 underline text-red-500"
+          onClick={() => {
+            localStorage.clear();
+            setAuth({ ...auth, authentication: undefined });
+            navigate("/")
+          }}
+        >
+          Logout
+        </div>
+      </div>
       <div className=" text-gray-700 -ml-3 mb-8 text-lg font-medium ">
         My Rent
       </div>

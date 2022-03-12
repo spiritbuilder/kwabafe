@@ -1,24 +1,21 @@
-import React, { useState, useContext,  useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { AppContext } from "../context/AppProvider";
 
 const AuthForm = () => {
   let navigate = useNavigate();
   const [disabled, setDisabled] = useState(false);
   let [auth, setAuth] = useContext(AppContext);
-  console.log(auth);
+
   useEffect(() => {
     if (auth.authentication) {
-    navigate("/apply");
-  } 
-   
-  })
-  
-  
+      navigate("/apply");
+    }
+  });
 
   let { slug } = useParams();
 
@@ -55,8 +52,9 @@ const AuthForm = () => {
         let response = await axios.post(url, values);
         console.log(response.data);
         setAuth({ ...auth, authentication: response.data });
-        localStorage.setItem("user", response.data)
-        navigate("apply");
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userfullname", response.data.fullname);
+        navigate("/apply");
         console.log(auth, "changed");
         setDisabled(false);
       } catch (error) {
@@ -70,7 +68,7 @@ const AuthForm = () => {
   });
   return (
     <form
-      className=" rounded-lg flex p-10 w-2/4 flex-col self-center justify-evenly  border-kwabapurplelight border"
+      className="  rounded-lg flex xl:w-1/2 lg:w-2/5 md:w-1/2 p-10  flex-col self-center justify-evenly  border-kwabapurplelight border"
       onSubmit={formik.handleSubmit}
     >
       <div className=" self-center mb-2 text-xl font-semibold">
@@ -115,7 +113,7 @@ const AuthForm = () => {
           ) : null}
         </>
       )}
-      <div>
+      <div className="my-3 flex flex-col">
         <label className="text-sm mb-1" htmlFor="email">
           Email Address
         </label>
@@ -163,7 +161,13 @@ const AuthForm = () => {
         Submit
       </button>
 
-
+      <div className="mt-3 text-center text-sm underline text-kwabapurplelight">
+        {slug === "signin" ? (
+          <Link to="/auth/signup">New here?, sign up</Link>
+        ) : (
+          <Link to="/auth/signin"> Already a user?, please sign in</Link>
+        )}
+      </div>
     </form>
   );
 };
