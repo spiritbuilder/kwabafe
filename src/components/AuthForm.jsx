@@ -1,15 +1,24 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,  useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppProvider";
 
 const AuthForm = () => {
+  let navigate = useNavigate();
   const [disabled, setDisabled] = useState(false);
   let [auth, setAuth] = useContext(AppContext);
   console.log(auth);
+  useEffect(() => {
+    if (auth.authentication) {
+    navigate("/apply");
+  } 
+   
+  })
+  
+  
 
   let { slug } = useParams();
 
@@ -46,7 +55,8 @@ const AuthForm = () => {
         let response = await axios.post(url, values);
         console.log(response.data);
         setAuth({ ...auth, authentication: response.data });
-
+        localStorage.setItem("user", response.data)
+        navigate("apply");
         console.log(auth, "changed");
         setDisabled(false);
       } catch (error) {
@@ -152,6 +162,8 @@ const AuthForm = () => {
       >
         Submit
       </button>
+
+
     </form>
   );
 };

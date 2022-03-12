@@ -4,12 +4,10 @@ import { AppContext } from "../context/AppProvider";
 
 function Auth() {
   const [auth, setAuth] = useContext(AppContext);
-
+  const [user, setUser] = useState(auth.user);
   return (
     <div className=" flex justify-center  h-full w-full">
-      {!auth.auth ? <AuthForm /> : <div className="">
-        Apply for Loan
-      </div>}
+      {!user ? <AuthForm /> : <div className="">Apply for Loan</div>}
     </div>
   );
 }

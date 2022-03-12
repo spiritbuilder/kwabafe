@@ -1,10 +1,18 @@
 import React, { createContext, useState, useEffect } from "react";
 
-export let  AppContext = createContext();
+
+
+
+let AppContext = createContext();
+
+
+
+
 
 function AppProvider({ children }) {
+
   const [auth, setAuth] = useState({
-    authentication: undefined,
+    authentication : undefined,
     formValues: {},
   });
 
@@ -15,4 +23,5 @@ function AppProvider({ children }) {
   );
 }
 
+export{AppContext}
 export default AppProvider;

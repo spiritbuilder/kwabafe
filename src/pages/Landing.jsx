@@ -5,7 +5,7 @@ function Landing() {
   return (
     <div className=" w-full h-full flex justify-center items-center">
       <img
-        src="https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+        src={img}
         className=" top-0 left-0 w-1/2 h-full object-cover"
       />
       <div className=" w-1/2 flex-col flex justify-center ">
