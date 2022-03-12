@@ -9,7 +9,7 @@ import { AppContext } from "../context/AppProvider";
 const Submission = () => {
 
 
-  
+
   return (
 
     <div className="xl:w-1/2 lg:w-2/5 md:w-4/5 w-full p-6 self-center justify-self-center rounded-md border border-kwabapurplelight">
@@ -63,7 +63,7 @@ const Submission = () => {
         </div>
       </div>
 
-      <button className=" bg-kwabapurple text-sm mt-4 w-full self-center text-white p-4  rounded-md "
+      <button type="submit" className=" bg-kwabapurple text-sm mt-4 w-full self-center text-white p-4  rounded-md "
         onClick={() => {
         
       }}

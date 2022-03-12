@@ -32,7 +32,8 @@ const RequestLoan = () => {
     }),
     onSubmit: (values) => {
       let finalval = { ...values, accomodation_status: picked };
-
+      setAuth({ ...auth, formvalues: finalval })
+      navigate("/submission")
       alert(finalval.accomodation_status);
       //do something
     },
@@ -175,6 +176,7 @@ const RequestLoan = () => {
           ) : undefined}
         </div>
         <button
+          type="button"
           className=" bg-kwabagreen text-sm mt-2 w-full self-center text-white p-2  rounded-md "
           onClick={formik.handleSubmit}
         >
